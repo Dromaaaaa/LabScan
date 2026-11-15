@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LabScan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">▚</span>
+      <span class="brand-name">LabScan</span>
+      <span class="brand-tag">recon lab console</span>
+    </div>
+    <div class="scope" id="scope" title="Périmètre autorisé (scope.json)"></div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <section class="panel">
+        <h2 class="panel-title">Nouveau scan</h2>
+        <form id="scan-form" autocomplete="off">
+          <label>Outil
+            <select id="tool"></select>
+          </label>
+          <label>Profil
+            <select id="preset"></select>
+          </label>
+          <label>Cible
+            <input id="target" placeholder="192.168.56.101, 10.10.0.0/24, http://box.htb" required>
+          </label>
+          <label id="ports-field">Ports <span class="hint">optionnel</span>
+            <input id="ports" placeholder="22,80,443 ou 1-1024">
+          </label>
+          <button type="submit" id="launch">Lancer</button>
+          <button type="button" id="chain" class="btn-chain"
+            title="nmap repère les ports HTTP, puis lance whatweb et nikto dessus">
+            Chaîner · nmap → web
+          </button>
+          <p class="form-msg" id="form-msg" role="status"></p>
+        </form>
+      </section>
+
+      <section class="panel history">
+        <h2 class="panel-title">Historique</h2>
+        <ul id="history" class="history-list"></ul>
+      </section>
+    </aside>
+
+    <section class="content" id="content">
+      <div class="empty">
+        <p class="empty-title">Aucun scan sélectionné</p>
+        <p>Lance un scan sur une cible de ton périmètre ou ouvre un scan de l'historique.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
